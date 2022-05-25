@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './help.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -13,7 +14,8 @@ class HomePage extends StatelessWidget {
         child: ElevatedButton(
           child: const Text('Ir para a tela help'),
           onPressed: () {
-            Navigator.pushNamed(context, '/help');
+            Navigator.pushNamed(context, '/help',
+                arguments: ScreenArguments('Título', 'Mensagem'));
           },
         ),
       ),
