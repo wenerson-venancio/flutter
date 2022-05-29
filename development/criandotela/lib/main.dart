@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'src/model/contador.dart';
 
 import 'src/home.dart';
 import 'src/help.dart';
 
-void main() => runApp(const MeuApp());
+void main() => runApp(MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => Contador()),
+      ],
+      child: MeuApp(),
+    ));
 
 class MeuApp extends StatelessWidget {
   const MeuApp({Key? key}) : super(key: key);

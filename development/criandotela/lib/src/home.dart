@@ -1,35 +1,34 @@
 // ignore_for_file: library_private_types_in_public_api
-
+import './model/contador.dart';
 import 'package:flutter/material.dart';
-import './help.dart';
+import 'package:provider/provider.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
-
-  @override
-  _HomePage createState() => _HomePage();
-}
-
-class _HomePage extends State<HomePage> {
-  int contagem = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Tela Home'),
+        title: const Text('Tela Home'),
       ),
       body: Center(
         child: Column(
           children: <Widget>[
-            Text('Contagem:'),
-            Text(contagem.toString()),
+            const Text('Contagem:'),
+            Consumer<Contador>(
+                builder: (context, contador, child) =>
+                    Text(contador.valor.toString())),
             ElevatedButton(
-              child: Text('Aumentar'),
+              child: const Text('Aumentar'),
               onPressed: () {
-                setState(() {
-                  contagem = contagem + 1;
-                });
+                Provider.of<Contador>(context, listen: false).aumentar();
+              },
+            ),
+            ElevatedButton(
+              child: const Text('Ir para a tela Help'),
+              onPressed: () {
+                Navigator.pushNamed(context, '/help');
               },
             )
           ],
